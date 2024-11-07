@@ -156,7 +156,8 @@ def main():
                     
         # --- PLOT PERIODS ---
         if selected == "Visualization":
-            st.header("Transactions Visualization")
+            #st.header("Transactions Visualization")
+            st.markdown("<h3 style='text-align: center; font-weight: bold;'>Transactions</h3>", unsafe_allow_html=True)
             with st.form("saved_periods"):
                 col1, col2 = st.columns(2)
                 with col1:
@@ -228,7 +229,8 @@ def main():
                     
         # --- Show Students List ---
         if selected == "Families":
-            st.header("Families List")
+            #st.header("Families List")
+            st.markdown("<h3 style='text-align: center; font-weight: bold;'>Families</h3>", unsafe_allow_html=True)
             selected = option_menu(
                 menu_title=None,
                 options=["Add", "Delete", "List"],
@@ -269,13 +271,26 @@ def main():
                             'Date':payment_dates, 'Phone': phones, 'Comments':comments}
                     df = pd.DataFrame.from_dict(data)
                     
-                    sort_by_level = st.checkbox("Sort by Category?")
-                    if sort_by_level:
-                        st.write(df.sort_values(by='Category'))
-                    else:
+                    #sort_by_level = st.checkbox("Sort by Category?")
+                    # Display the title in a more prominent font with Markdown
+                    st.markdown("<h3 style='text-align: center; font-weight: bold;'>Sort by?</h3>", unsafe_allow_html=True)
+                    
+                    # Updated option menu with suitable icons for each sorting option
+                    sort_by_level = option_menu(
+                        menu_title=None,
+                        options=['Name', 'Category', 'Payment', 'Date'],
+                        icons=["person-circle", "tags", "credit-card", "calendar-date"],  # Updated icons for clarity
+                        default_index=0,
+                        orientation="horizontal",
+                    )
+                    if sort_by_level == 'Name':
                         st.write(df.sort_values(by='Name'))
-        
-        
+                    elif sort_by_level == 'Category': 
+                        st.write(df.sort_values(by='Category'))
+                    elif sort_by_level == 'Payment': 
+                        st.write(df.sort_values(by='Payment'))
+                    else:
+                        st.write(df.sort_values(by='Date'))
                 else:
                     placeholder = st.empty()
                     placeholder.info("No families are currently enrolled!")
@@ -344,8 +359,8 @@ def main():
                     submitted = st.form_submit_button("Save Family")
                     
                     if submitted:
-                        if payment == "No":
-                            payment_date = ""
+                        # if payment == "No":
+                        #     payment_date = ""
                             
                         if not name:
                             st.error("Please enter a non-empty family name")
