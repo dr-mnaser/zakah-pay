@@ -218,9 +218,9 @@ def main():
                         total_income = sum(df[df['Transaction']=='Income']['Value'])
                         total_expense = sum(df[df['Transaction']=='Expense']['Value'])
                         remaining_budget = total_income - total_expense
-                        col4.metric("Total Income", f"{total_income} {currency}")
-                        col5.metric("Total Expense", f"{total_expense} {currency}")
-                        col6.metric("Remaining Budget", f"{remaining_budget} {currency}")
+                        col4.metric("Zakah", f"{total_income} {currency}")
+                        col5.metric("Paid", f"{total_expense} {currency}")
+                        col6.metric("Balance", f"{remaining_budget} {currency}")
                         
                         st.write(df)
                     else:
