@@ -271,26 +271,28 @@ def main():
                             'Date':payment_dates, 'Phone': phones, 'Comments':comments}
                     df = pd.DataFrame.from_dict(data)
                     
-                    #sort_by_level = st.checkbox("Sort by Category?")
-                    # Display the title in a more prominent font with Markdown
-                    st.markdown("<h3 style='text-align: center; font-weight: bold;'>Sort by?</h3>", unsafe_allow_html=True)
+                    st.write(df)
                     
-                    # Updated option menu with suitable icons for each sorting option
-                    sort_by_level = option_menu(
-                        menu_title=None,
-                        options=['Name', 'Category', 'Payment', 'Date'],
-                        icons=["person-circle", "tags", "credit-card", "calendar-date"],  # Updated icons for clarity
-                        default_index=0,
-                        orientation="horizontal",
-                    )
-                    if sort_by_level == 'Name':
-                        st.write(df.sort_values(by='Name'))
-                    elif sort_by_level == 'Category': 
-                        st.write(df.sort_values(by='Category'))
-                    elif sort_by_level == 'Payment': 
-                        st.write(df.sort_values(by='Payment'))
-                    else:
-                        st.write(df.sort_values(by='Date'))
+                    # #sort_by_level = st.checkbox("Sort by Category?")
+                    # # Display the title in a more prominent font with Markdown
+                    # st.markdown("<h3 style='text-align: center; font-weight: bold;'>Sort by?</h3>", unsafe_allow_html=True)
+                    
+                    # # Updated option menu with suitable icons for each sorting option
+                    # sort_by_level = option_menu(
+                    #     menu_title=None,
+                    #     options=['Name', 'Category', 'Payment', 'Date'],
+                    #     icons=["person-circle", "tags", "credit-card", "calendar-date"],  # Updated icons for clarity
+                    #     default_index=0,
+                    #     orientation="horizontal",
+                    # )
+                    # if sort_by_level == 'Name':
+                    #     st.write(df.sort_values(by='Name'))
+                    # elif sort_by_level == 'Category': 
+                    #     st.write(df.sort_values(by='Category'))
+                    # elif sort_by_level == 'Payment': 
+                    #     st.write(df.sort_values(by='Payment'))
+                    # else:
+                    #     st.write(df.sort_values(by='Date'))
                 else:
                     placeholder = st.empty()
                     placeholder.info("No families are currently enrolled!")
